@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Shopping List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Uppgift 2: Inköpslista</h1>
+<div id="app">
+  <form v-on:submit.prevent="addItem">
+    <p>
+      Vad behöver du?
+      <input type="text" required placeholder="produktnamn.." v-model="itemName">
+    </p>
+    <p>
+      Hur många?
+      <input type="number" placeholder="antal produkter.." v-model="itemNumber">
+    </p>
+
+    <div id="btn-container">
+        <button type="submit">Lägg till</button>
+    </div>
+    
+  </form>
+
+  <div>
+    <p>Inköpslista:</p>
+    <ul>
+      <li v-for="(item, index) in shoppingList" :key="item.id">
+        <span v-if="!item.isEditing">
+          {{item.productName}}
+        </span>
+
+        <input v-else v-model="item.productName">
+
+        <button v-if="!item.isEditing" @click="item.isEditing = true">
+          Redigera
+        </button>
+        <button v-else @click="saveEdit(item)">Spara</button>
+        <button type="button" @click="removeItem(item.id)">Ta bort</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

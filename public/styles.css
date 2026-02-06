@@ -1,0 +1,10 @@
+form {
+    border: dashed black 1px;
+    width: 200px;
+    padding: 20px;
+}
+
+#btn-container {
+    display: flex;
+    gap: 10px;
+}
